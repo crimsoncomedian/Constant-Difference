@@ -12,7 +12,6 @@
 .adj button{font-size:18px;padding:14px 22px;border-radius:12px;border:1px solid #c8d3e2;background:#f9fbff;font-weight:750;color:#17273c;cursor:pointer}
 .adj button:hover:not(:disabled){background:#eef1ff}
 .adj button:disabled{opacity:.4;cursor:not-allowed}
-.trail{text-align:center;font-size:14px;color:#5e6d81;margin-top:10px;min-height:20px}
 .orig{text-align:center;color:#5e6d81;font-size:14px;margin-bottom:4px}
 
 </style>
@@ -23,7 +22,7 @@
 <div class="eq" id="eq" aria-live="polite"><span class="num" id="top"></span><span>&minus;</span><span class="num" id="bot"></span></div>
 <div class="status" id="status"></div>
 <div class="adj"><button id="m10" type="button">&minus;10 to both</button><button id="m1" type="button">&minus;1 to both</button><button id="p1" type="button">+1 to both</button><button id="p10" type="button">+10 to both</button></div><div class="adj" style="margin-top:8px"><button id="undo" type="button">Undo</button><button id="reset" type="button">Start over</button></div>
-<div class="trail" id="trail"></div></section>
+</section>
 <section class="card"><form id="form" class="answer"><label for="answer"><strong>Answer:</strong></label><input id="answer" type="number" step="1" inputmode="numeric" autocomplete="off" placeholder="?" required><button class="action" type="submit">Submit</button></form><div class="feedback" id="feedback" role="status" aria-live="polite"></div><div style="text-align:center;margin-top:12px"><button id="next" type="button" class="action">New problem &#8635;</button></div></section>
 </main>
 <script>
@@ -40,8 +39,6 @@ function render(){
  $('bot').textContent=b;
  $('status').className='status'+(good?' good':'');
  $('status').textContent=good?'\u2713 No regrouping needed!':'Some digits need regrouping';
- const sg=n=>(n<0?'\u2212':'+')+Math.abs(n);
- $('trail').textContent=steps.length?`Change to both: ${sg(add)} (${steps.map(sg).join(' ')})`:'';
  $('undo').disabled=!steps.length;$('reset').disabled=!steps.length;
  $('p1').disabled=b+1>9999;$('p10').disabled=b+10>9999;
  $('m1').disabled=b-1<0;$('m10').disabled=b-10<0;}
